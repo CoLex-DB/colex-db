@@ -1,0 +1,67 @@
+---
+output: 
+  html_document:
+    output_dir: docs
+knit: (function(inputFile, encoding) { 
+      out_dir <- 'docs';
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), out_dir, 'index.html')) })
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+###  Etymological database of colexification  {.tabset .tabset-fade .tabset-pills}
+
+The database is based on the NorthEuraLex dataset enriched with the etymological data from Wiktionary
+
+#### Definitions
+
+```{r}
+make_link_omniglot <- function(x, link){
+  paste("<a href='",
+        as.character(link),
+        "' target='_blank'>",
+        as.character(x),
+        "</a>", sep = "")}
+wwsb <- read_tsv("northeuralex_definitions.tsv", na = "")
+library(DT)
+datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
+```
+
+
+
+#### Concepts
+
+```{r}
+make_link_omniglot <- function(x, link){
+  paste("<a href='",
+        as.character(link),
+        "' target='_blank'>",
+        as.character(x),
+        "</a>", sep = "")}
+wwsb <- read_tsv("wn_concepticon.tsv", na = "")
+library(DT)
+datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
+```
+
+#### Etymologies
+
+```{r}
+make_link_omniglot <- function(x, link){
+  paste("<a href='",
+        as.character(link),
+        "' target='_blank'>",
+        as.character(x),
+        "</a>", sep = "")}
+wwsb <- read_tsv("northeuralex_etymologies.tsv", na = "")
+library(DT)
+datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
+```
+
+
