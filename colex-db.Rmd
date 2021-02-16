@@ -34,8 +34,6 @@ library(DT)
 datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
 ```
 
-
-
 #### Concepts
 
 ```{r}
@@ -60,6 +58,20 @@ make_link_omniglot <- function(x, link){
         as.character(x),
         "</a>", sep = "")}
 wwsb <- read_tsv("northeuralex_etymologies.tsv", na = "")
+library(DT)
+datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
+```
+
+#### Raw etymologies
+
+```{r}
+make_link_omniglot <- function(x, link){
+  paste("<a href='",
+        as.character(link),
+        "' target='_blank'>",
+        as.character(x),
+        "</a>", sep = "")}
+wwsb <- read_tsv("northeuralex_etymologies_upd.tsv", na = "")
 library(DT)
 datatable(wwsb, filter = 'top', rownames = FALSE, options = list(dom = 'tip'), escape = FALSE)
 ```
